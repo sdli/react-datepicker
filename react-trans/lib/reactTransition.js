@@ -23,8 +23,7 @@ const copyStyleToDocument = function(seconds){
         styleElement.type = 'text/css';
         styleElement.id = 'react_style';
         document.getElementsByTagName('head')[0].appendChild(styleElement);
-        let second = '1s';
-        let newStyle = OTS(styles)+ '*{transition: all '+ second + '}';
+        let newStyle = OTS(styles);
         styleElement.appendChild(document.createTextNode(newStyle))
     }
 }

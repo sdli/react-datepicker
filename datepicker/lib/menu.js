@@ -5,6 +5,8 @@ import Year from './year';
 import {theme ,mainStyle , maskStyle, menuStyle, menuHeaderStyle, menuFooterStyle, menuHeaderFirstStyle, menuHeaderLastStyle, menuFooterButtonStyle, menuContentStyle, menuLines, menuGradient} from '../theme/default.js';
 import reactTrans from '../../react-trans';
 
+reactTrans.init();
+
 export default class Menu extends Component{
     constructor(props){
         super(props);
@@ -13,7 +15,8 @@ export default class Menu extends Component{
         };
         this.state = {
             close: false,
-            open: this.props.open
+            open: this.props.open,
+            react_trans: true
         };
         this.handleOpen = this.handleOpen.bind(this);
     }
@@ -22,7 +25,7 @@ export default class Menu extends Component{
         this.setState({
             close: true
         });
-        reactTrans.hideElement(this.div);
+        // reactTrans.hideElement(this.div);
     }
 
     componentWillReceiveProps(nextProps){
@@ -40,11 +43,11 @@ export default class Menu extends Component{
     }
 
     componentDidUpdate(){
+        console.log('did');
         reactTrans.showElement(this.div);
     }
 
     componentDidMount(){
-        reactTrans.init();
         reactTrans.showElement(this.div);
     }
 
