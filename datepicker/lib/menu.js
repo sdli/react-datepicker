@@ -3,6 +3,7 @@ import Day from './day';
 import Month from './month';
 import Year from './year';
 import {theme ,mainStyle , maskStyle, menuStyle, menuHeaderStyle, menuFooterStyle, menuHeaderFirstStyle, menuHeaderLastStyle, menuFooterButtonStyle, menuContentStyle, menuLines, menuGradient} from '../theme/default.js';
+import reactTrans from '../../react-trans';
 
 export default class Menu extends Component{
     constructor(props){
@@ -13,13 +14,15 @@ export default class Menu extends Component{
         this.state = {
             close: false,
             open: this.props.open
-        }
+        };
+        this.handleOpen = this.handleOpen.bind(this);
     }
 
     handleOpen(){
         this.setState({
             close: true
         });
+        reactTrans.hideElement(this.div);
     }
 
     componentWillReceiveProps(nextProps){
@@ -36,13 +39,22 @@ export default class Menu extends Component{
         }
     }
 
+    componentDidUpdate(){
+        reactTrans.showElement(this.div);
+    }
+
+    componentDidMount(){
+        reactTrans.init();
+        reactTrans.showElement(this.div);
+    }
+
     render(){
         const theme = this.theme;
         console.log('update');
         if(!this.state.open || this.state.close) return null;
         return(
-            <div style={mainStyle} >
-                <div style={maskStyle} onClick={()=>this.handleOpen()}></div>
+            <div style={mainStyle} ref={div => this.div = div}>
+                <div style={maskStyle} onClick={this.handleOpen}></div>
                 <div style={menuStyle}>
                     <div style={menuHeaderStyle}>
                         <p style={menuHeaderFirstStyle}>2016</p>

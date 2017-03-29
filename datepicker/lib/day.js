@@ -11,14 +11,21 @@ export default class Day extends Component{
             initHeight: 0,
             selected: props.selected,
             minDays: -28*50,
-            maxDays: 3*50
+            maxDays: 3*50,
+            mouseOn: false
         };
         this.ontouchstart = this.ontouchstart.bind(this)
         this.ontouchmove = this.ontouchmove.bind(this);
         this.ontouchend = this.ontouchend.bind(this);
+        this.onMouseDown = this.onMouseDown.bind(this);
+        this.onMouseMove = this.onMouseMove.bind(this);
+        this.onMouseUp = this.onMouseUp.bind(this);
+        this.onMouseLeave = this.onMouseLeave.bind(this);
+        this.onMouseOut = this.onMouseOut.bind(this);
     }
 
     ontouchstart(e){
+        e.stopPropagation();
         let initHeight = e.touches[0].pageY;
         this.setState({
             initHeight: initHeight
@@ -48,12 +55,84 @@ export default class Day extends Component{
         });
     }
 
+    onMouseDown(e){
+        let initHeight = e.pageY;
+        this.setState({
+            mouseOn: true,
+            initHeight: initHeight
+        });
+    }
+
+    onMouseMove(e){
+        if(this.state.mouseOn){
+            let touchHeight = e.pageY;
+            let height = touchHeight - this.state.initHeight;
+            let recordHeight = this.state.scrollHeight+height;
+            if(recordHeight > this.state.minDays && recordHeight < this.state.maxDays){
+                this.setState({
+                    transform: 'translateY('+ recordHeight +'px)',
+                    scrollHeight: recordHeight,
+                    initHeight: touchHeight
+                });
+            }
+        }
+    }
+
+    onMouseUp(e){
+        if(this.state.mouseOn){
+            let touchHeight = e.pageY;
+            let glue = parseInt(this.state.scrollHeight/50);
+            this.setState({
+                transform: 'translateY(' + glue*50 + 'px)',
+                scrollHeight : glue*50,
+                initHeight: parseInt(this.state.initHeight) + parseInt(Math.round(this.state.scrollHeight/50*100)/100*50),
+                mouseOn: false
+            });
+        }
+    }
+
+    onMouseLeave(e){
+        if(this.state.mouseOn){
+            let touchHeight = e.pageY;
+            let glue = parseInt(this.state.scrollHeight/50);
+            this.setState({
+                transform: 'translateY(' + glue*50 + 'px)',
+                scrollHeight : glue*50,
+                initHeight: parseInt(this.state.initHeight) + parseInt(Math.round(this.state.scrollHeight/50*100)/100*50),
+                mouseOn: false
+            });
+        }
+    }
+
+    onMouseOut(e){
+        if(this.state.mouseOn){
+            let touchHeight = e.pageY;
+            let glue = parseInt(this.state.scrollHeight/50);
+            this.setState({
+                transform: 'translateY(' + glue*50 + 'px)',
+                scrollHeight : glue*50,
+                initHeight: parseInt(this.state.initHeight) + parseInt(Math.round(this.state.scrollHeight/50*100)/100*50),
+                mouseOn: false
+            });
+        }
+    }
+
     render(){
         const styleUl = dayStyle.ul;
         const {transform} = this.state;
         const newStyle = { ...styleUl, transform};
+        const handleEvents={
+            onTouchStart: this.ontouchstart,
+            onTouchMove: this.ontouchmove,
+            onTouchEnd: this.ontouchend,
+            onMouseDown: this.onMouseDown,
+            onMouseMove: this.onMouseMove,
+            onMouseUp: this.onMouseUp,
+            onMouseLeave: this.onMouseLeave,
+            onMouseOut: this.onMouseOut
+        };
         return(
-            <div style={dayStyle.div} ref="datepicker_div" onTouchStart={this.ontouchstart} onTouchMove={this.ontouchmove} onTouchEnd={this.ontouchend}>
+            <div style={dayStyle.div} ref="datepicker_div" {...handleEvents}>
                 <ul style={newStyle}>
                     <li style={dayStyle.li}>1</li>
                     <li style={dayStyle.li}>2</li>

@@ -8,7 +8,9 @@ export const mainStyle ={
     top: 0,
     width: '100%',
     height: '100%',
-    zIndex: 9998
+    zIndex: 9998,
+    draggable: false,
+    userSelect: 'none'
 }
 
 export const maskStyle ={
@@ -38,7 +40,8 @@ export const menuHeaderStyle={
     background: '#f6f6f6',
     textAlign: 'center',
     padding: '8px',
-    color: '#0D809E'
+    color: '#0D809E',
+    userSelect: 'none'
 }
 
 export const menuFooterStyle={
@@ -48,7 +51,8 @@ export const menuFooterStyle={
     left: 0,
     bottom: 0,
     width:'100%',
-    color: "#0D809E"
+    color: "#0D809E",
+    userSelect: 'none'
 }
 
 export const menuHeaderFirstStyle = {

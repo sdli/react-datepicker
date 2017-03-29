@@ -1,19 +1,23 @@
 const dayStyle ={
     ul:{
         listStyle: 'none',
-        width: '100%'
+        width: '100%',
+        draggable: false
     },
     li:{
         height: '50px',
         textAlign: 'center',
         padding: '16px 0',
-        fontSize: '14px'
+        fontSize: '14px',
+        draggable: false
     },
     div:{
         flex: 1,
         position: 'relative',
         height: '256px',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        userSelect: 'none',
+        cursor: 'pointer'
     },
     gradient:{
         position: 'absolute',
