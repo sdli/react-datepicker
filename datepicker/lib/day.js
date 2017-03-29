@@ -25,7 +25,6 @@ export default class Day extends Component{
     }
 
     ontouchstart(e){
-        e.stopPropagation();
         let initHeight = e.touches[0].pageY;
         this.setState({
             initHeight: initHeight
@@ -33,7 +32,7 @@ export default class Day extends Component{
     }
 
     ontouchmove(e){
-        e.stopPropagation();
+        e.preventDefault();
         let touchHeight = e.touches[0].pageY;
         let height = touchHeight - this.state.initHeight;
         let recordHeight = this.state.scrollHeight+height;
@@ -47,7 +46,6 @@ export default class Day extends Component{
     }
 
     ontouchend(e){
-        e.stopPropagation();
         let touchHeight = e.changedTouches[0].pageY;
         let glue = parseInt(this.state.scrollHeight/50);
         this.setState({
