@@ -17,7 +17,7 @@ export default class Index extends Component{
 
         return(
             <div>
-                <Menu {...this.props} open={this.state.open} />
+                <Menu {...this.props} open={this.state.open} getDate={(date)=>console.log(date)} />
                 <button onClick={()=>this.handleDatePicker()} >开启日期选择</button>
             </div>
         );
