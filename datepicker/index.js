@@ -5,7 +5,8 @@ export default class Index extends Component{
     constructor(props){
         super(props);
         this.state = {
-            open: false
+            open: false,
+            date: []
         }
     }
     handleDatePicker(){
@@ -13,12 +14,13 @@ export default class Index extends Component{
             open: true
         });
     }
-    render(){
 
+    render(){
         return(
             <div>
-                <Menu {...this.props} open={this.state.open} getDate={(date)=>console.log(date)} />
+                <Menu {...this.props} open={this.state.open} getDate={(date)=>this.setState({date:date,open: false})} />
                 <button onClick={()=>this.handleDatePicker()} >开启日期选择</button>
+                <h1>{this.state.date.toString()}</h1>
             </div>
         );
     }

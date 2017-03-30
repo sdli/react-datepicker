@@ -130,12 +130,12 @@ export default class Menu extends Component{
     }
 
     handleGetDate(){
-        if(this.props.getDate){
-            this.props.getDate(this.state.selectedArr);
-        }
         this.setState({
             close: true
         });
+        if(this.props.getDate){
+            this.props.getDate(this.state.selectedArr);
+        }
     }
 
     render(){
