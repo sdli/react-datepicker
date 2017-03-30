@@ -90,7 +90,7 @@ function onMouseMove(element,type){
     }
 }
 
-function onMouseUp(element){
+function onMouseUp(element,type){
     var that = element;
     return function(e){
         if(that.state.mouseOn){
@@ -107,7 +107,7 @@ function onMouseUp(element){
     }
 }
 
-function onMouseLeave(element){
+function onMouseLeave(element,type){
     var that = element;
     return function(e){
         if(that.state.mouseOn){
@@ -124,7 +124,7 @@ function onMouseLeave(element){
     }
 }
 
-function onMouseOut(element){
+function onMouseOut(element,type){
     var that = element;
     return function(e){
         if(that.state.mouseOn){
