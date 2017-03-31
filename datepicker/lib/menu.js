@@ -3,9 +3,9 @@ import Day from './day';
 import Month from './month';
 import Year from './year';
 import {theme ,mainStyle , maskStyle, menuStyle, menuHeaderStyle, menuFooterStyle, menuHeaderFirstStyle, menuHeaderLastStyle, menuFooterButtonStyle, menuContentStyle, menuLines, menuGradient} from '../theme/default.js';
-import reactTrans from '../../react-trans';
+// import reactTrans from '../../react-trans';
 
-reactTrans.init();
+// reactTrans.init();
 
 export default class Menu extends Component{
     constructor(props){
@@ -74,13 +74,13 @@ export default class Menu extends Component{
             });
         }
     }
-
+    
     componentDidUpdate(){
-        reactTrans.showElement(this.div);
+        // reactTrans.showElement(this.div);
     }
 
     componentDidMount(){
-        reactTrans.showElement(this.div);
+        // reactTrans.showElement(this.div);
     }
 
     dayChange(day){
