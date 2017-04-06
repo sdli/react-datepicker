@@ -15,6 +15,10 @@
 
 ### 使用方法 Usage
 
+> npm install react-datepicker-s --save-dev
+
+code: 
+
 ```javascript
 import Datepicker from 'react-datepicker-s';
 
