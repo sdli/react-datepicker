@@ -1,11 +1,12 @@
 # react-datepicker
 简易滚动日期选择器。
 
+![图片](./sss.png)
+
 ### 提醒 Warning
 
-> 使用es6编辑此包
-
-> This package is using es6 (you can use babel to make it es5 supported.)
+> 1. 初始化时可用自定义state开控制是否显示
+> 2. 请在react项目中使用，本项目依赖react
 
 ### 使用范围 Divce Scope
 
@@ -15,15 +16,11 @@
 
 ### 使用方法 Usage
 
-> npm install react-datepicker-s --save-dev
-
-code: 
-
 ```javascript
 import Datepicker from 'react-datepicker-s';
 
 <Datepicker theme={theme} open={true} getDate={(date)=>console.log(date)}>
-</Datepicker>,
+</Datepicker>
 
 ```
 
